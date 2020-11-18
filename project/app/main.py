@@ -1,6 +1,6 @@
 import logging
 
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI
 
 from app.api import ping, summaries
 from app.db import init_db
