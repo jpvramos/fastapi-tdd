@@ -16,11 +16,14 @@ jobs:
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull image
+        run: |
+          docker pull ${{ env.IMAGE }}:latest || true
       - name: Build image
         run: |
           docker build \
             --cache-from ${{ env.IMAGE }}:latest \
-            --tag ${{ env.IMAGE }} \
+            --tag ${{ env.IMAGE }}:latest \
             --file ./project/Dockerfile.prod \
             "./project"
       - name: Push Image
