@@ -4,13 +4,12 @@ on: [push]
 
 env:
   IMAGE: docker.pkg.github.com/$GIT_REPOSITORY/web
-
+  HEROKU_REGISTRY_IMAGE: registry.heroku.com/web-jp/web
 jobs:
   build:
     name: Build Docker IMAGE
     runs-on: ubuntu-latest
     steps:
-      - run: echo "envs" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       - name: Checkout master
         uses: actions/checkout@master
       - name: Log in to GitHub Packages
