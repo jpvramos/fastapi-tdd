@@ -12,7 +12,7 @@ jobs:
     steps:
       - run: echo "envs" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       - name: Checkout master
-      - uses: actions/checkout@master
+        uses: actions/checkout@master
       - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
         env: 
