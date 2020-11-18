@@ -76,7 +76,7 @@ jobs:
     needs: [build, test]
     env:
       HEROKU_APP_NAME: web-jp
-      HEROKU_REGISTRY_IMAGE: registry.heroku.com/web-jp/web
+      HEROKU_REGISTRY_IMAGE: registry.heroku.com/serene-tundra-85967/web
     steps:
       - name: Checkout master
         uses: actions/checkout@master
@@ -90,8 +90,7 @@ jobs:
       - name: Build Image
         run: |
           docker build \
-            --cache-from ${{ env.IMAGE }}-final:latest \
-            --tag ${{ env.IMAGE }}:latest \ 
+            --cache-from ${{ env.IMAGE }}:latest \
             --tag ${{ env.HEROKU_REGISTRY_IMAGE }}:latest \
             --file ./project/Dockerfile.prod \ 
             "./project"
