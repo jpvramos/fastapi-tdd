@@ -12,7 +12,7 @@ jobs:
     steps:
       - run: echo "envs" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       - name: Checkout master
-      - uses: actions/checkout@1
+      - uses: actions/checkout@master
       - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
         env: 
@@ -34,7 +34,7 @@ test:
   needs: build
   steps:
     - name: Checkout master
-      uses: actions/checkout@1
+      uses: actions/checkout@master
     - name: Log in to Github Packages
       run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
       env:
@@ -77,7 +77,7 @@ deploy:
     HEROKU_REGISTER_IMAGE: registry.heroku.com/${HEROKU_APP_NAME}/web
   steps:
     - name: Checkout master
-      uses: actions/checkout@1
+      uses: actions/checkout@master
     - name: Log in to GitHub Packages
       run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
       env:
