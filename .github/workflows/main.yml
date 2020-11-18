@@ -10,6 +10,7 @@ jobs:
     name: Build Docker IMAGE
     runs-on: ubuntu-latest
     steps:
+      - run: echo "envs" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       - name: Checkout master
       - uses: actions/checkout@1
       - name: Log in to GitHub Packages
