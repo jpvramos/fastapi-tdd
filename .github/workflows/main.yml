@@ -3,7 +3,7 @@ name: Continuos Integration and delivery
 on: [push]
 
 env:
-  IMAGE: docker.pkg.github.com/$GIT_REPOSITORY/web
+  IMAGE: docker.pkg.github.com/$GITHUB_REPOSITORY/web
   HEROKU_REGISTRY_IMAGE: registry.heroku.com/web-jp/web
 jobs:
   build:
