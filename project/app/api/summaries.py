@@ -1,11 +1,9 @@
 from typing import List
 
-from fastapi import APIRouter, HTTPException
-
 from app.api import crud
 from app.models.schema import SummaryPayLoadSchema, SummaryResponseSchema
 from app.models.text_summary import SummarySchema
-
+from fastapi import APIRouter, HTTPException
 
 router = APIRouter()
 

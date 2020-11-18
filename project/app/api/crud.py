@@ -1,6 +1,6 @@
 # project/app/api/crud.py
 
-from typing import Union, List
+from typing import List, Union
 
 from app.models.schema import SummaryPayLoadSchema
 from app.models.text_summary import TextSummary
