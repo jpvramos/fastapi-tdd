@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+asyncpg
+tortoise-orm
+pytest
+requests
+gunicorn
+uvloop
+httptools
+pytest-cov
+flake8
+black
+isort
