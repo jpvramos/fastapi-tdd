@@ -76,7 +76,7 @@ jobs:
     needs: [build, test]
     env:
       HEROKU_APP_NAME: web-jp
-      HEROKU_REGISTRY_IMAGE: registry.heroku.com/serene-tundra-85967/web
+      HEROKU_REGISTRY_IMAGE: registry.heroku.com/web-jp/web
     steps:
       - name: Checkout master
         uses: actions/checkout@master
@@ -104,8 +104,8 @@ jobs:
           HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
       - name: Set environment variables
         run: |
-          echo ::set-env name=HEROKU_REGISTRY_IMAGE::${{ env.HEROKU_REGISTRY_IMAGE }}
-          echo ::set-env name=HEROKU_AUTH_TOKEN::${{ secrets.HEROKU_AUTH_TOKEN }}
+          echo "HEROKU_REGIHSTRY_IMAGE=${{ env.HEROKU_REGISTRY_IMAGE }}" >> $GITHUB_ENV
+          echo "HEROKU_AUTH_TOKEN=${{ secrets.HEROKU_AUTH_TOKEN }}" >> $GITHUB_ENV
       - name: Release
         run: |
           chmod +x ./release.sh
