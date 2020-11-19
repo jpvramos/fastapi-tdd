@@ -86,7 +86,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Pull image
         run: |
-          docker pull ${{ env.IMAGE }}-builder:latest || true
+          docker pull ${{ env.IMAGE }}:latest || true
       - name: Build Image
         run: |
           docker build \
