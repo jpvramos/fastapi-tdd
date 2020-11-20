@@ -96,19 +96,13 @@ jobs:
             --file ./project/Dockerfile.prod \
             "./project"
       - name: Log in to the Heroku Container Registry
+        run: echo ${HEROKU_AUTH_TOKEN} | docker login -u _ --password-stdin registry.heroku.com
         env:
           HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
-        run: heroku container:login
       - name: Push to the registry 
+        run: docker push ${{ env.HEROKU_REGISTRY_IMAGE }}
         env:
           HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
-          HEROKU_APP_NAME: web-jp
-        run: heroku container:push  -a ${HEROKU_APP_NAME} web
-      - name: Container Release
-        env:
-          HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
-          HEROKU_APP_NAME: web-jp
-        run: heroku container:release -a  ${HEROKU_APP_NAME} web
       - name: Set environment variables
         run: |
           echo "HEROKU_REGIHSTRY_IMAGE=${{ env.HEROKU_REGISTRY_IMAGE }}" >> $GITHUB_ENV
