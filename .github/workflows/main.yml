@@ -102,10 +102,12 @@ jobs:
       - name: Push to the registry 
         env:
           HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
+          HEROKU_APP_NAME: web-jp
         run: heroku container:push  -a ${{ HEROKU_APP_NAME }} web
       - name: Container Release
         env:
           HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
+          HEROKU_APP_NAME: web-jp
         run: heroku container:release -a  ${{ HEROKU_APP_NAME }} web
       - name: Set environment variables
         run: |
