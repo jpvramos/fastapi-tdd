@@ -12,3 +12,5 @@ flake8
 black
 isort
 pytest-xdist
+newspaper3k
+nltk

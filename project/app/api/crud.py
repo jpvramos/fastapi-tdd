@@ -7,7 +7,7 @@ from app.models.text_summary import TextSummary
 
 
 async def post(payload: SummaryPayLoadSchema) -> int:
-    summary = TextSummary(url=payload.url, summary="dummy summary")
+    summary = TextSummary(url=payload.url, summary="")
     await summary.save()
     return summary.id
 

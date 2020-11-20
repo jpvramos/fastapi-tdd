@@ -9,21 +9,18 @@ import pytest
 from app.api import crud, summaries
 
 
-def test_create_summary(test_app, monkeypatch):
-    test_request_payload = {"url": "https://foo.bar"}
-    test_response_payload = {"id": 1, "url": "https://foo.bar"}
+def test_create_summary(test_app_with_db, monkeypatch):
+    def mock_generate_summary(summary_id, url):
+        return None
 
-    async def mock_post(payload):
-        return 1
-
-    monkeypatch.setattr(crud, "post", mock_post)
-    response = test_app.post(
+    monkeypatch.setattr(summaries, "generate_summary", mock_generate_summary)
+    response = test_app_with_db.post(
         "/summaries/",
-        data=json.dumps(test_request_payload),
+        data=json.dumps({"url": "https://foo.bar"}),
     )
 
     assert response.status_code == 201
-    assert response.json() == test_response_payload
+    assert response.json()["url"] == "https://foo.bar"
 
 
 def test_create_summaries_invalid_json(test_app):
@@ -180,7 +177,7 @@ def test_update_summary(test_app, monkeypatch):
             422,
             [
                 {
-                    "loc": ["body","url"],
+                    "loc": ["body", "url"],
                     "msg": "field required",
                     "type": "value_error.missing",
                 },
@@ -205,8 +202,6 @@ def test_update_summary(test_app, monkeypatch):
         ],
     ],
 )
-
-
 def test_update_summary_invalid(
     test_app, monkeypatch, summary_id, payload, status_code, detail
 ):

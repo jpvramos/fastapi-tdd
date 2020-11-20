@@ -107,6 +107,7 @@ jobs:
         env:
           HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
           HEROKU_REGISTRY_IMAGE: ${{ env.HEROKU_REGISTRY_IMAGE }}
+          HEROKU_APP_NAME: web-jp
         run: |
           chmod +x ./release.sh
           ./release.sh
