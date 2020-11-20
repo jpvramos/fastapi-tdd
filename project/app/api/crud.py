@@ -33,7 +33,6 @@ async def put(id: int, payload: SummaryPayLoadSchema) -> Union[dict, None]:
     summary = await TextSummary.filter(id=id).update(
         url=payload.url, summary=payload.summary
     )
-    
     if summary:
         updated_summary = await TextSummary.filter(id=id).first().values()
         return updated_summary[0]
